@@ -1,0 +1,11 @@
+{
+  "name": "Qara City Portal",
+  "description": "بوابة مدينة قارة السورية الإلكترونية - دليل متكامل يضم معلومات تاريخية، الخدمات البلدية، الأخبار المحلية، والمشاريع التنموية في مدينة قارة الأثرية.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
