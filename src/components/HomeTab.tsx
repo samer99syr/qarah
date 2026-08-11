@@ -35,7 +35,8 @@ import {
   Maximize2,
   Cherry,
   UserCheck,
-  User
+  User,
+  Users
 } from 'lucide-react';
 import { HomeContent, SideBanner, GalleryItem, News, CustomPage, HeritagePoint } from '../types';
 
@@ -160,49 +161,32 @@ export default function HomeTab({
   const renderVisitorCounter = () => {
     if (homeContent.visitorCountEnabled === false) return null;
 
-    // Convert number to array of digits with leading zeros (e.g. 6 digits)
-    const countStr = visitorCount.toString().padStart(6, '0');
-    const digits = countStr.split('');
-
     return (
       <div 
         id="visitor-counter-block"
-        className="max-w-4xl mx-auto px-4 sm:px-6 py-4 text-right animate-fadeIn"
+        className="max-w-4xl mx-auto px-4 sm:px-6 py-6 flex justify-center animate-fadeIn"
       >
         <div 
-          className="rounded-2xl py-3 px-5 shadow-sm border relative overflow-hidden transition-all duration-300 flex flex-wrap sm:flex-nowrap items-center justify-between gap-4"
-          style={{ 
+          className="flex items-center gap-2 px-4 py-2 rounded-xl border transition-all shadow-sm font-sans shrink-0"
+          style={{
             backgroundColor: homeContent.visitorCounterBg || '#064e3b',
-            borderColor: (homeContent.visitorCounterColor || '#fbbf24') + '20'
+            borderColor: (homeContent.visitorCounterColor || '#fbbf24') + '25',
+            color: homeContent.visitorCounterColor || '#fbbf24'
           }}
+          dir="rtl"
         >
-          {/* Label and Pulse */}
-          <div className="flex items-center gap-3 flex-row-reverse text-right">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span 
-              className="text-xs sm:text-sm font-bold text-white"
-            >
-              {homeContent.visitorCounterTitle || 'إجمالي زوار بوابة قارة الإلكترونية'}
-            </span>
-          </div>
-
-          {/* Compact Digits */}
-          <div className="flex items-center gap-1 flex-row-reverse bg-black/20 px-3 py-1.5 rounded-xl border border-white/5">
-            {digits.map((digit, idx) => (
-              <span 
-                key={idx} 
-                className="w-5 h-7 rounded-md flex items-center justify-center font-mono text-sm font-bold bg-gray-900 border border-gray-800 text-white shadow-sm"
-                style={{ color: homeContent.visitorCounterColor || '#fbbf24' }}
-              >
-                {digit}
-              </span>
-            ))}
-            <span className="text-[10px] font-bold text-white/80 mr-2">زائر</span>
-          </div>
-
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          <Users className="h-4 w-4 opacity-90" />
+          <span className="text-xs sm:text-sm font-bold text-white mr-1">
+            {homeContent.visitorCounterTitle || 'إجمالي زوار بوابة قارة الإلكترونية'}
+          </span>
+          <span className="text-sm font-bold font-mono tracking-wider ml-1" dir="ltr">
+            {visitorCount.toLocaleString('en-US')}
+          </span>
+          <span className="text-[11px] text-white/80 font-medium">زائر</span>
         </div>
       </div>
     );

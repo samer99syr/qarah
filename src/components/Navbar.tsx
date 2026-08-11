@@ -421,7 +421,7 @@ export default function Navbar({
                       className={getTabClasses(isParentActive)}
                     >
                       <span>{item.label}</span>
-                      <ChevronDown className={`h-3 w-3 text-current transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'group-hover:rotate-180'}`} />
+                      <ChevronDown className={`h-3 w-3 text-current transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                       {isParentActive && tabStyle === 'classic' && (
                         <span 
                           className="absolute bottom-1 left-3 right-3 h-0.5 rounded-full"
@@ -432,15 +432,17 @@ export default function Navbar({
                     
                     {/* Hover Dropdown Menu with Hover Bridge & State Stability */}
                     <div 
-                      className={`absolute right-0 top-full pt-1.5 w-60 z-50 text-right transition-all duration-150 ${
-                        isDropdownOpen ? 'block opacity-100 pointer-events-auto' : 'hidden group-hover:block'
+                      className={`absolute right-0 top-full pt-1.5 w-60 z-50 text-right transition-all duration-200 origin-top-right ${
+                        isDropdownOpen 
+                          ? 'opacity-100 visible scale-100 translate-y-0 pointer-events-auto' 
+                          : 'opacity-0 invisible scale-95 -translate-y-2 pointer-events-none'
                       }`}
                     >
                       {/* Invisible Hover Bridge to prevent gap glitches between button and menu */}
                       <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent"></div>
 
                       <div 
-                        className="w-full rounded-2xl border shadow-xl py-2 animate-fadeIn"
+                        className="w-full rounded-2xl border shadow-xl py-2"
                         style={{
                           backgroundColor: effectiveBg.includes('rgba') ? '#ffffff' : effectiveBg,
                           borderColor: effectiveBorder
